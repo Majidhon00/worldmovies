@@ -23,7 +23,7 @@
                             class="btn btn-primary but2">hide</button></th>
 
                     <th>Qo'shimcha</th>
-                    <th><a href="{{ route('admin.create') }}" class="btn btn-info"><i class="fas fa-plus"></i></a></th>
+                    <th><a href="{{ route('admin2.create') }}" class="btn btn-info"><i class="fas fa-plus"></i></a></th>
                 </tr>
             </thead>
             <tbody class="areagl">

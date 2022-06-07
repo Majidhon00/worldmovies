@@ -6,6 +6,7 @@ use App\Http\Controllers\rekController;
 use App\Http\Controllers\trailerController;
 use App\Http\Controllers\VideoController;
 use App\Models\trailer;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', indexController::class);
 Route::resource('index', indexController::class);
 
-Route::resource('video',VideoController::class);
-Route::resource('trailer',trailerController::class);
+Route::resource('video',VideoController::class)->middleware('auth');
+Route::resource('admin2',adminController::class)->middleware('auth');
+Route::resource('trailer',trailerController::class)->middleware('auth');
 Route::resource('rek',rekController::class);
 Route::get('vid/{video}',[VideoController::class,'show']);
 Route::get('deltr/{trailer}',[trailerController::class,'destroy']);
@@ -33,5 +35,7 @@ Route::get('vid/live/{id}',[indexController::class,'live'])->name('live');
 Route::get('video/live/{id}',[indexController::class,'live'])->name('live');
 Route::post('ajaxtdata',[VideoController::class,'ajaxdata'])->name('ajaxdata');
 Route::post('ajaxtable',[adminController::class,'ajaxtable'])->name('ajaxtable');
-Route::resource('admin',adminController::class);
 // Route::get() 
+Auth::routes();
+
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

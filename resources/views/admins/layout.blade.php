@@ -176,7 +176,7 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap"><span class="hide-menu">Pages</span></li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link sidebar-link" href="{{ route('admin.index') }}" >
+                            <a class="sidebar-link sidebar-link" href="{{ route('admin2.index') }}" >
                                 <i data-feather="home" class="feather-icon"></i>
                                 <span class="hide-menu">Videolar</span>
                             </a>
@@ -193,7 +193,20 @@
                                 <span class="hide-menu">Trailer</span>
                             </a>
                         </li>
-                       
+                        <li>
+
+                            <div class="" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>  
+                    </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

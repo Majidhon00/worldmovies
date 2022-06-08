@@ -98,8 +98,8 @@
 
                     <div class="container">
                         <div class="top-searc ">
-
-                            <input type="text" placeholder="Search" class="search" width="300px">
+                            <label for="" class="serlab"></label>
+                            <input type="text" placeholder="Qidirish Kino yoki janr " class="search" width="300px">
                         </div>
                     </div>
                     <div class="slick-multiItemSlider show2">
@@ -284,17 +284,16 @@
         <div class="trailers">
             <div class="container">
         <div class="row ipad-width">
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
                 <div class="title-hd">
-                    <h2>in theater</h2>
-                    <a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+                    <h2>Treyler</h2>
                 </div>
                 <div class="videos">
                     <div class="slider-for-2 video-ft">
                         @foreach ($trs as $tr)
                             
                         <div>
-                            <iframe width="560" height="315" src="{{ $tr->v_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560" class="item-video" height="315" src="{{ $tr->v_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         @endforeach
 
@@ -315,7 +314,7 @@
                     
                     </div>
                 </div>   
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -351,9 +350,11 @@
 
                     $(".search").keyup(function(e) {
                         se = $(".search").val();
-                        if (!(se.length == 0)) {
+                        if (!(se.length == 0)&&!(se==" ")) {
                             $(".show1").empty();
                             $(".show2").hide();
+                            $(".serlab").empty();
+
                             $.ajax({
                                 method: "post",
                                 url: "{{ route('ajaxdata') }}",
@@ -364,9 +365,9 @@
                                 success: function(result) {
                                     $(".show1").empty();
                                     $(".show2").hide();
-
+                              
                                     result.data.forEach(datav)
-
+                                    
                                     function datav(item, index) {
                                         $(".show1").html($(".show1").html() +
                                             "<div class='movie-item shows'><div class='mv-img'><img src='" +
@@ -377,14 +378,13 @@
                                             "</a></h6><br><a href='vid/" + item.id +
                                             "' class='btn btn-info'><i class='fas fa-eye'></i></a> </div></div>"
                                         )
-
                                     }
                                 }
                             });
 
                         } else {
-                            $(".show2").show();
                             $(".show1").empty();
+                            $(".show2").show();
                         }
 
                     });

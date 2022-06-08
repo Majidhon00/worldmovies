@@ -16,9 +16,10 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($video)
     {
-        //
+        $baza = video::find($video);
+        return view('admins.comments',['comments'=>$baza]);
     }
 
     /**
@@ -56,7 +57,6 @@ class VideoController extends Controller
         $rek = reklama::all();
         $count = follower::where('follow','=',$video->id)->count();
         return view('list',['list'=>$video,'lists'=>$baza,'count'=>$count, 'reks'=>$rek]);
-
     }
     public function ajaxdata(Request $request)
     {
@@ -64,7 +64,7 @@ class VideoController extends Controller
           
             return redirect()->route('index.index');
         }else{
-            $data = DB::select("SELECT * from videos where video_name like '%".$request->test."%' and serial='non'" );
+            $data = DB::select("SELECT * from videos where videos.serial='non' and video_name like '%".$request->test."%' or videos.cat like '%".$request->test."%' " );
             return response()->json(['data'=>$data]);
         }
     }

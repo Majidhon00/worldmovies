@@ -46,6 +46,7 @@ class adminController extends Controller
 
         $admin2->video_name=$request->video_name;
         $admin2->cat=$request->cat;
+        $admin2->kuzatuv=0;
         $admin2->desc=$request->desc;
         $admin2->new=$request->new;
         $admin2->video=$request->videos;
@@ -89,31 +90,31 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, video $admin)
+    public function update(Request $request, video $admin2)
     {
 
 
         if ($request->video_image==''){
-            $admin->video=$request->video_image2;
+            $admin2->video=$request->video_image2;
         }else{
 
             $test = $request->file('video_image')->getClientOriginalName();
             $request->video_image->move(public_path('img'),$test);
-            $admin->video_image = 'img/' . $test;
+            $admin2->video_image = 'img/' . $test;
         }
-        $admin->video_name=$request->video_name;
-        $admin->cat=$request->cat;
-        $admin->desc=$request->desc;
-        $admin->new=$request->new;
-        $admin->video=$request->videos;    
+        $admin2->video_name=$request->video_name;
+        $admin2->cat=$request->cat;
+        $admin2->desc=$request->desc;
+        $admin2->new=$request->new;
+        $admin2->video=$request->videos;    
         if($request->serial=='')
         {
-            $admin->serial='non';    
+            $admin2->serial='non';    
         }else
         {
-            $admin->serial=$request->serial;    
+            $admin2->serial=$request->serial;    
         }
-        $admin->update();
+        $admin2->update();
         return back();
     }
 

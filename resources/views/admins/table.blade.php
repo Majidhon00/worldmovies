@@ -39,8 +39,9 @@
                                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                                 allowfullscreen></iframe></td>
                         <td>{{ substr($tab->desc, 0, 50) }}</td>
-                        <td><a href="up/{{ $tab->id }}" class="btn btn-success"><i class="fas fa-edit"></i></a><a
-                                href="del/{{ $tab->id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        <td><a href="up/{{ $tab->id }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                            <a href="showvid/{{ $tab->id }}" class="btn btn-info"><i class="fas fa-comment"></i></a>
+                            <a href="del/{{ $tab->id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -97,7 +98,7 @@
                             "</td><td>" + item.video_name + "</td><td><img src='" +
                             item.video_image + "' alt='rasm' width='50px'></td><td>" + item.cat+ "</td><td class='area'>" + item.video + "</td><td>" +
                            item.desc.substring(0, 50) + "</td><td><a href='up/" + item.id +
-                            "' class='btn btn-success'><i class='fas fa-edit'></i></a><a href='del/" +
+                            "' class='btn btn-success'><i class='fas fa-edit'></i></a><a href='showvid/"+item.id+"' class='btn btn-info'><i class='fas fa-comment'></i></a><a href='del/" +
                             item.id +
                             "' class='btn btn-danger'><i class='fas fa-trash'></i></a></td></tr>"   )
                          

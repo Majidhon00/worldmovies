@@ -59,9 +59,13 @@ class indexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(video $video)
     {
-        //
+        $baza = video::all();
+        $rek = reklama::all();
+        $count = follower::where('follow','=',$video->id)->count();
+        return view('list',['list'=>$video,'lists'=>$baza,'count'=>$count, 'reks'=>$rek]);
+
     }
 
     /**

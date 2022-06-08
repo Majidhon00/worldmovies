@@ -185,13 +185,13 @@
                             @foreach ($lists as $lis)
                                 @if ($lis->serial == $list->video_name)
                                     <a href="{{ $lis->id }}" target="{{ $lis->id }}" class="btn btn-light">
-                                        {{ $loop->index - 2 }}
+                                        {{ $loop->index+1 }}
                                     </a>
                                 @endif
                             @endforeach
                             <br><br>
                             <div class="d-fle">
-
+                                
                                 <a href="{{ substr($list->video, 0, 12) }}ss{{ substr($list->video, 12, 10000) }}"
                                     target="{{ substr($list->video, 0, 12) }}ss{{ substr($list->video, 12, 10000) }}"
                                     class="button-56"><i class="fas fa-download"></i> Yuklash</a>
@@ -253,15 +253,11 @@
                     @foreach ($list->comment as $item)
                     <div class="row form">
                         <div class="col-sm-12 col-md-7 col-12 pb-4">
-                            <br>
-                                
                             <div class="comment mt-4 text-justify float-left">
                                 <h4>{{ $item->name }}</h4> <span>{{ substr($item->created_at,0,10) }}</span>
                                 <br>
                                 <p>{{ $item->content }}</p>
                             </div>
-                            
-                            
                         </div>
                     </div>
                     <br>

@@ -28,7 +28,7 @@
   }
   .sel{
     width: 90%; 
-    height: 65rem;
+    height: 65rem; 
   }
   @media only screen and (max-width: 800px)
   {

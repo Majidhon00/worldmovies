@@ -19,9 +19,10 @@
                     <th>Video Nomi</th>
                     <th>Video rasmi</th>
                     <th>Kategoryasi</th>
-                    <th>linki <button class="btn btn-primary but">show</button> <button
-                            class="btn btn-primary but2">hide</button></th>
+                    <th>linki {{--<button class="btn btn-primary but">show</button>
+                          <button class="btn btn-primary but2">hide</button></th> --}}
 
+                           
                     <th>Qo'shimcha</th>
                     <th><a href="{{ route('admin2.create') }}" class="btn btn-info"><i class="fas fa-plus"></i></a></th>
                 </tr>
@@ -34,14 +35,16 @@
                         <td><img src="{{ $tab->video_image }}" alt="rasm" width="50px"></td>
                         <td>{{ $tab->cat }}</td>
                         <td class="area">{{ $tab->video }}</td>
-                        <td class="area2"><iframe class='sel' width='200px' height='100px'
+                        {{-- <td class="area2">
+                            <iframe class='sel' width='200px' height='100px'
                                 src='{{ $tab->video }}' title='YouTube video player' frameborder='0'
                                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                                allowfullscreen></iframe></td>
+                                allowfullscreen></iframe>
+                            </td> --}}
                         <td>{{ substr($tab->desc, 0, 50) }}</td>
                         <td><a href="up/{{ $tab->id }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                             <a href="showvid/{{ $tab->id }}" class="btn btn-info"><i class="fas fa-comment"></i></a>
-                            <a href="del/{{ $tab->id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <a href="{{ $tab->id }}" class="btn btn-danger del"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -108,4 +111,16 @@
           });
 
     })
+ 
+  $(function(){
+    $(".del").click(function (e) { 
+      e.preventDefault();
+      id = $(this).attr('href'); 
+      a = confirm("Rostdan ham o'chirilsinmi");
+      if(a==true)
+      {
+        window.location.href="del/"+id;
+      }
+    });
+  })
 </script>

@@ -22,6 +22,7 @@
                     <th>No</th>
                     <th> Comment</th>
                     <th> kino nomi</th>
+                    <th> Amallar </th>
                 </tr>
             </thead>
             <tbody class="areagl">
@@ -31,6 +32,7 @@
                   <td>{{ $loop->index + 1 }}</td>
                   <td>{{ $tab->content }}</td>
                   <td>{{ $comments->video_name }}</td>
+                  <td><a href="{{ $tab->id }}" class="btn btn-danger del"><i class="fas fa-trash"></i></a></td>
                 </tr>
                 @endif
                 
@@ -41,3 +43,17 @@
             <a href="{{ route('admin2.index') }}" class="btn btn-dark">Orqaga</a>
     </div>
 @endsection
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script>
+  $(function(){
+    $(".del").click(function (e) { 
+      e.preventDefault();
+      id = $(this).attr('href'); 
+      a = confirm("Rostdan ham o'chirilsinmi");
+      if(a==true)
+      {
+        window.location.href="delcom/"+id;
+      }
+    });
+  })
+</script>

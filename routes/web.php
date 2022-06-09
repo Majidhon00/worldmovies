@@ -29,6 +29,7 @@ Route::resource('trailer',trailerController::class)->middleware('auth');
 Route::resource('rek',rekController::class);
 Route::get('vid/{video}',[indexController::class,'show']);
 Route::get('deltr/{trailer}',[trailerController::class,'destroy']);
+Route::get('showvid/delcom/{video}',[VideoController::class,'destroy']);
 Route::get('up/{id}',[adminController::class,'edit']);
 Route::get('del/{video}',[adminController::class,'destroy']);
 Route::get('showvid/{video}',[VideoController::class,'index']);
